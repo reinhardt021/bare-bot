@@ -106,3 +106,53 @@ RSpec.describe Table, '#valid_direction?' do
     end
   end
 end
+
+RSpec.describe Table, '#valid_place?' do  
+  context 'when given valid column and direction but not row' do 
+    it 'should return false' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      column = '3'
+      row = '7'
+      direction = 'N'
+
+      # ACT
+      result = table.valid_place?(column, row, direction)
+
+      # ASSERT
+      expect(result).to eq(false)
+    end
+  end
+
+  context 'when given valid column and row but not direction' do 
+    it 'should return false' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      column = '3'
+      row = '5'
+      direction = 'NE'
+
+      # ACT
+      result = table.valid_place?(column, row, direction)
+
+      # ASSERT
+      expect(result).to eq(false)
+    end
+  end
+
+  context 'when given valid column and row and direction' do 
+    it 'should return true' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      column = '3'
+      row = '5'
+      direction = 'E'
+
+      # ACT
+      result = table.valid_place?(column, row, direction)
+
+      # ASSERT
+      expect(result).to eq(true)
+    end
+  end
+end
