@@ -28,6 +28,7 @@ W   E
 * Ruby 3.0 or later
 * bundler version 2.2.22 or later
 * rubocop 1.26.1 or later
+* rspec 3.0 or later
 
 ## Setup
 
