@@ -1,4 +1,6 @@
 class Table
+  attr_reader :directions
+
   def initialize(columns, rows)
     @columns = columns
     @rows = rows
@@ -67,10 +69,24 @@ class Robot
 
   def left
     # turn 90 degrees counter clockwise
+    curr_index = @table.directions.find_index(@orientation)
+    if curr_index == 0
+      curr_index = @table.directions.count - 1
+    else
+      curr_index -= 1
+    end
+    @orientation = @table.directions[curr_index]
   end
 
   def right
     # turn 90 degrees clockwise
+    curr_index = @table.directions.find_index(@orientation)
+    if curr_index == (@table.directions.count - 1)
+      curr_index = 0
+    else
+      curr_index += 1
+    end
+    @orientation = @table.directions[curr_index]
   end
 
   def report
@@ -117,18 +133,18 @@ class Game
         next
       end
 
-      puts "Robot is ready"
+      #puts "Robot is ready"
 
       if user_input == 'MOVE'
         #@robot.move
       end
 
       if user_input == 'LEFT'
-        #@robot.left
+        @robot.left
       end
 
       if user_input == 'RIGHT'
-        #@robot.right
+        @robot.right
       end
 
       if user_input == 'REPORT'
@@ -148,10 +164,6 @@ game.play
 
 # MOVE will move the robot one step forward,
 # in whichever direction it is currently facing
-
-
-# LEFT and RIGHT respectfully
-# turn the robot 90° angle to the left or to the right.
 
 
 # CONSTRAINTS:
