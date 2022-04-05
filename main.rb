@@ -12,18 +12,14 @@ class Table
   end
 
   def valid_column?(column)
-    if !integer?(column)
-      return false
-    end
+    return false unless integer?(column)
 
     column = column.to_i
     (0 <= column && column < @columns)
   end
 
   def valid_row?(row)
-    if !integer?(row)
-      return false
-    end
+    return false unless integer?(row)
 
     row = row.to_i
     (0 <= row && row < @rows)
@@ -44,9 +40,7 @@ class Robot
   end
 
   def place(column, row, direction)
-    if !@table.valid_place?(column, row, direction)
-      return false
-    end
+    return false unless @table.valid_place?(column, row, direction)
 
     @x_position = column
     @y_position = row
@@ -99,7 +93,6 @@ class Robot
   def report
     puts "Robot is at column: #{@x_position} and row: #{@y_position}, facing: #{@orientation}"
   end
-
 end
 
 class Game
@@ -132,7 +125,7 @@ class Game
         @robot.place(x_value, y_value, direction)
       end
 
-      next if !@robot.ready?
+      next unless @robot.ready?
 
       @robot.move if user_input == 'MOVE'
       @robot.left if user_input == 'LEFT'
