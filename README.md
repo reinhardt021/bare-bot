@@ -1,7 +1,5 @@
 # BARE BOT
 
-===
-
 A command-line application 
 that represents a robot moving on a table represented by a 6 by 6 square grid
 that reads in the following commands:
