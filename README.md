@@ -28,6 +28,7 @@ W   E
 * Ruby 3.0 or later
 * bundler version 2.2.22 or later
 * rubocop 1.26.1 or later
+* rspec 3.0 or later
 
 ## Setup
 
@@ -42,5 +43,11 @@ $ ruby main.rb
 Development:
 // to run rubocop static analysis
 $ rubocop
+
+Testing:
+// to run the tests
+$ rspec
+// to run the tests with more detail provided
+$ rspec --format doc
 ```
 
