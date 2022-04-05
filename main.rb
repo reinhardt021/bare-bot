@@ -111,7 +111,7 @@ class Game
   def initialize
     @prompt = 'Welcome to BareBot!
     Please provide one of the valid commands to move the robot on the 6x6 square grid:
-    PLACE X,Y,O (X-coordinate, Y-coordinate, Compass Orientation)
+    PLACE X, Y, O (X-coordinate, Y-coordinate, Compass Orientation)
     MOVE
     LEFT
     RIGHT
@@ -141,11 +141,8 @@ class Game
       end
 
       if !@robot.ready?
-        puts 'Robot is not ready yet. Please provide a valid PLACE'
         next
       end
-
-      #puts "Robot is ready"
 
       if user_input == 'MOVE'
         @robot.move
@@ -171,13 +168,3 @@ end
 
 game = Game.new
 game.play
-
-
-
-# MOVE will move the robot one step forward,
-# in whichever direction it is currently facing
-
-
-# CONSTRAINTS:
-# Any commands that would put the robot out of the defined grid is to be ignored,
-# all other commands (including another PLACE) are to be obeyed
