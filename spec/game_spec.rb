@@ -4,7 +4,7 @@ require_relative '../lib/robot'
 
 RSpec.describe Game, '#initialize' do  
   context 'when new game is created' do 
-    it 'new table and robot are added' do
+    it 'should have a new table and robot are added' do
       # ARRANGE
       # ACT
       game = Game.new

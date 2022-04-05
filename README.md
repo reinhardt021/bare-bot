@@ -43,5 +43,11 @@ $ ruby main.rb
 Development:
 // to run rubocop static analysis
 $ rubocop
+
+Testing:
+// to run the tests
+$ rspec
+// to run the tests with more detail provided
+$ rspec --format doc
 ```
 
