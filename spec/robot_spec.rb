@@ -72,3 +72,35 @@ RSpec.describe Robot, '#left' do
     end
   end
 end
+
+RSpec.describe Robot, '#move' do
+  context 'when robot is placed and not at the edge of the table' do
+    it 'should move one space in the direction it is facing' do
+      # ARRANGE
+      table = Table.new(6,6)
+      robot = Robot.new(table)
+      robot.place('3', '4', 'E')
+
+      # ACT
+      robot.move
+
+      # ASSERT
+      expect(robot.x_position).to eq('4')
+    end
+  end
+
+  context 'when robot is placed and facing the edge of the table' do
+    it 'should NOT move' do
+      # ARRANGE
+      table = Table.new(6,6)
+      robot = Robot.new(table)
+      robot.place('3', '5', 'N')
+
+      # ACT
+      robot.move
+
+      # ASSERT
+      expect(robot.y_position).to eq('5')
+    end
+  end
+end
