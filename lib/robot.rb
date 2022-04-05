@@ -1,5 +1,7 @@
 # This represents the robot that is traversing the table according to user inputs
 class Robot
+  attr_reader :table
+
   def initialize(table)
     @table = table
   end
@@ -59,4 +61,3 @@ class Robot
     puts "Robot is at column: #{@x_position} and row: #{@y_position}, facing: #{@orientation}"
   end
 end
-

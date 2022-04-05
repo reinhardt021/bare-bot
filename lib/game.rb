@@ -1,8 +1,10 @@
-require './table'
-require './robot'
+require './lib/table'
+require './lib/robot'
 
 # This class represents the interaction between the user inputs and the robot on the table
 class Game
+  attr_reader :table, :robot
+
   def initialize
     @prompt = 'Welcome to BareBot!
     Please provide one of the valid commands to move the robot on the 6x6 square grid:
