@@ -1,24 +1,31 @@
-prompt = 'Welcome to BareBot!
+class Game
+  @@prompt = 'Welcome to BareBot!
+  Please provide one of the valid commands to move the robot on the 6x6 square grid:
+  PLACE X,Y,O (X-coordinate, Y-coordinate, Compass Orientation)
+  MOVE
+  LEFT
+  RIGHT
+  REPORT'
 
-Please provide one of the valid commands to move the robot on the 6x6 square grid:
-PLACE X,Y,O (X-coordinate, Y-coordinate, Compass Orientation)
-MOVE
-LEFT
-RIGHT
-REPORT
+  def play
+    puts @@prompt
 
-'
-puts prompt
+    play = true
+    while play
+      user_input = gets
+      #puts "user input: " + user_input
 
-play = true
-while play
-  user_input = gets
-  puts "user input: " + user_input
-
-  if user_input.strip == "exit"
-    break
+      if user_input.strip == "exit"
+        break
+      end
+    end
   end
+
 end
+
+game = Game.new
+game.play
+
 # robot should be prevented from exceeding limits of the grid
 # otherwise allowed to move freely (no obstructions)
 
