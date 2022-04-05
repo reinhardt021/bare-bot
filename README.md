@@ -1,7 +1,5 @@
 # BARE BOT
 
-===
-
 A command-line application 
 that represents a robot moving on a table represented by a 6 by 6 square grid
 that reads in the following commands:
@@ -28,7 +26,8 @@ W   E
 ## Dependencies
 
 * Ruby 3.0 or later
-* bundler version 2.2 or later
+* bundler version 2.2.22 or later
+* rubocop 1.26.1 or later
 
 ## Setup
 
@@ -38,5 +37,10 @@ $ bundle install
 
 // to run the program in the command line
 $ ruby main.rb
+
+
+Development:
+// to run rubocop static analysis
+$ rubocop
 ```
 
