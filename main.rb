@@ -7,34 +7,34 @@ class Table
     @directions = ['N', 'E', 'S', 'W']
   end
 
-  def is_integer?(input)
-    return Integer(input) rescue false
+  def integer?(input)
+    Integer(input) rescue false
   end
-  
+
   def valid_column?(column)
-    if !is_integer?(column)
+    if !integer?(column)
       return false
     end
+
     column = column.to_i
-
-    return (0 <= column && column < @columns) 
+    (0 <= column && column < @columns)
   end
-  
+
   def valid_row?(row)
-    if !is_integer?(row)
+    if !integer?(row)
       return false
     end
-    row = row.to_i
 
-    return (0 <= row && row < @rows) 
+    row = row.to_i
+    (0 <= row && row < @rows)
   end
 
   def valid_direction?(direction)
-    return @directions.include?(direction)
+    @directions.include?(direction)
   end
 
   def valid_place?(column, row, direction)
-    return valid_column?(column) && valid_row?(row) && valid_direction?(direction)
+    valid_column?(column) && valid_row?(row) && valid_direction?(direction)
   end
 end
 
@@ -47,46 +47,40 @@ class Robot
     if !@table.valid_place?(column, row, direction)
       return false
     end
+
     @x_position = column
     @y_position = row
     @orientation = direction
 
-    return true
+    true
   end
 
   def ready?
-    return @x_position && @y_position && @orientation
+    @x_position && @y_position && @orientation
   end
 
   def move
     x_value = @x_position.to_i
     y_value = @y_position.to_i
     direction = @orientation
-    if direction == 'N'
-      y_value += 1
-    end
-    if direction == 'E'
-      x_value += 1
-    end
-    if direction == 'S'
-      y_value -= 1
-    end
-    if direction == 'W'
-      x_value -= 1
-    end
+    y_value += 1 if direction == 'N'
+    x_value += 1 if direction == 'E'
+    y_value -= 1 if direction == 'S'
+    x_value -= 1 if direction == 'W'
 
     # checks done in place method
-    self.place(x_value.to_s, y_value.to_s, direction)
+    place(x_value.to_s, y_value.to_s, direction)
   end
 
   def left
     # turn 90 degrees counter clockwise
     curr_index = @table.directions.find_index(@orientation)
-    if curr_index == 0
+    if curr_index.zero?
       curr_index = @table.directions.count - 1
     else
       curr_index -= 1
     end
+
     @orientation = @table.directions[curr_index]
   end
 
@@ -98,6 +92,7 @@ class Robot
     else
       curr_index += 1
     end
+
     @orientation = @table.directions[curr_index]
   end
 
@@ -119,19 +114,16 @@ class Game
     @table = Table.new(6, 6)
     @robot = Robot.new(@table)
   end
-  
+
   def play
     puts @prompt
 
     play = true
     while play
       user_input = gets.strip
+      break if user_input == 'exit'
 
-      if user_input == "exit"
-        break
-      end
-
-      command = user_input.split(" ")
+      command = user_input.split(' ')
       if command.first == 'PLACE' && command.count == 4
         x_value = command[1].split(//).first
         y_value = command[2].split(//).first
@@ -140,26 +132,12 @@ class Game
         @robot.place(x_value, y_value, direction)
       end
 
-      if !@robot.ready?
-        next
-      end
+      next if !@robot.ready?
 
-      if user_input == 'MOVE'
-        @robot.move
-      end
-
-      if user_input == 'LEFT'
-        @robot.left
-      end
-
-      if user_input == 'RIGHT'
-        @robot.right
-      end
-
-      if user_input == 'REPORT'
-        @robot.report
-      end
-
+      @robot.move if user_input == 'MOVE'
+      @robot.left if user_input == 'LEFT'
+      @robot.right if user_input == 'RIGHT'
+      @robot.report if user_input == 'REPORT'
     end
 
   end
