@@ -33,7 +33,7 @@ RSpec.describe Table, '#integer?' do
       expect(result).to eq(false)
     end
   end
-  
+
   context 'when given a number' do
     it 'should return integer' do
       # ARRANGE
@@ -63,6 +63,7 @@ RSpec.describe Table, '#valid_column?' do
       expect(result).to eq(true)
     end
   end
+
   context 'when given out of bounds column' do
     it 'should return false' do
       # ARRANGE
@@ -92,6 +93,7 @@ RSpec.describe Table, '#valid_direction?' do
       expect(result).to eq(true)
     end
   end
+
   context 'when given NW for North West' do
     it 'should return false' do
       # ARRANGE

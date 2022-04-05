@@ -5,7 +5,7 @@ RSpec.describe Robot, '#initialize' do
   context 'when new robot is created' do
     it 'should have a table' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
 
       # ACT
       robot = Robot.new(table)
@@ -20,7 +20,7 @@ RSpec.describe Robot, '#place' do
   context 'when robot is placed' do
     it 'should have x, y, and orientation' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
       robot = Robot.new(table)
       column = '3'
       row = '4'
@@ -39,7 +39,7 @@ RSpec.describe Robot, '#place' do
   context 'when robot is NOT placed correctly' do
     it 'should have NOT x, y, and orientation' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
       robot = Robot.new(table)
       column = '3'
       row = '4'
@@ -60,7 +60,7 @@ RSpec.describe Robot, '#left' do
   context 'when robot is placed and turned left' do
     it 'should have updated its orientation' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
       robot = Robot.new(table)
       robot.place('3', '4', 'E')
 
@@ -77,7 +77,7 @@ RSpec.describe Robot, '#move' do
   context 'when robot is placed and not at the edge of the table' do
     it 'should move one space in the direction it is facing' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
       robot = Robot.new(table)
       robot.place('3', '4', 'E')
 
@@ -92,7 +92,7 @@ RSpec.describe Robot, '#move' do
   context 'when robot is placed and facing the edge of the table' do
     it 'should NOT move' do
       # ARRANGE
-      table = Table.new(6,6)
+      table = Table.new(6, 6)
       robot = Robot.new(table)
       robot.place('3', '5', 'N')
 
