@@ -5,11 +5,25 @@ class Table
     @directions = ['N', 'E', 'S', 'W']
   end
 
+  def is_integer?(input)
+    return Integer(input) rescue false
+  end
+  
   def valid_column?(column)
+    if !is_integer?(column)
+      return false
+    end
+    column = column.to_i
+
     return (0 <= column && column < @columns) 
   end
   
   def valid_row?(row)
+    if !is_integer?(row)
+      return false
+    end
+    row = row.to_i
+
     return (0 <= row && row < @rows) 
   end
 
@@ -28,12 +42,14 @@ class Robot
   end
 
   def place(column, row, direction)
-    # check if valid place
-    # return false if not
-    # true otherwise
+    if !@table.valid_place?(column, row, direction)
+      return false
+    end
     @x_position = column
     @y_position = row
     @orientation = direction
+
+    return true
   end
 
   def ready?
@@ -84,32 +100,50 @@ class Game
     play = true
     while play
       user_input = gets.strip
-       puts "user input: " + user_input
-
-      command = user_input.split(" ")
-      puts "command: " + command.to_s
-      # check that  input has PLACE keyword
-      #if user_input.include?('PLACE')
-      #end
-      puts "ready? " + (!!@robot.ready?).to_s
-
-      if !@robot.ready?
-        puts 'Robot is not ready yet. Please PLACE robot'
-        next
-      end
-
-      if user_input == 'MOVE'
-        @robot.move
-      end
-
-      # only initialize if PLACE given note has to be upper case
-      # @robot = Robot.new()
 
       if user_input == "exit"
         break
       end
-      puts '>>> end of loop'
+
+      command = user_input.split(" ")
+      # puts "command: " + command.to_s
+      # check that  input has PLACE keyword
+      if command.first == 'PLACE' && command.count == 4
+        x_value = command[1].split(//).first
+        y_value = command[2].split(//).first
+        direction = command[3]
+
+        @robot.place(x_value, y_value, direction)
+        # input = Integer(x_value) rescue false
+        # puts "x: " + input.to_s
+        # puts "x class: "+ x_value.class.name
+      end
+
+      if !@robot.ready?
+        puts 'Robot is not ready yet. Please provide a valid PLACE'
+        next
+      end
+
+      puts "Robot is ready"
+
+      if user_input == 'MOVE'
+        #@robot.move
+      end
+
+      if user_input == 'LEFT'
+        #@robot.left
+      end
+
+      if user_input == 'RIGHT'
+        #@robot.right
+      end
+
+      if user_input == 'REPORT'
+        #@robot.report
+      end
+
     end
+
   end
 
 end
