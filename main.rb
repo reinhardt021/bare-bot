@@ -1,14 +1,44 @@
-class Robot
-  def is_valid_place(x, y, orientation)
+class Table
+  def initialize(columns, rows)
+    @columns = columns
+    @rows = rows
+    @directions = ['N', 'E', 'S', 'W']
   end
 
-  def place(x_value, y_value, direction)
+  def valid_column?(column)
+    return (0 <= column && column < @columns) 
+  end
+  
+  def valid_row?(row)
+    return (0 <= row && row < @rows) 
+  end
+
+  def valid_direction?(direction)
+    return @directions.include?(direction)
+  end
+
+  def valid_place?(column, row, direction)
+    return valid_column?(column) && valid_row?(row) && valid_direction?(direction)
+  end
+end
+
+class Robot
+  def initialize(table)
+    @table = table
+  end
+
+  def place(column, row, direction)
     # check if valid place
     # return false if not
     # true otherwise
-    @x_position = x_value
-    @y_position = y_value
+    @x_position = column
+    @y_position = row
     @orientation = direction
+  end
+
+  def ready?
+    # check if has x y and orientation set
+    return @x_position && @y_position && @orientation
   end
 
   def is_facing_table_edge()
@@ -44,6 +74,8 @@ class Game
     LEFT
     RIGHT
     REPORT'
+    @table = Table.new(6, 6)
+    @robot = Robot.new(@table)
   end
   
   def play
@@ -51,17 +83,32 @@ class Game
 
     play = true
     while play
-      user_input = gets
-      # puts "user input: " + user_input
+      user_input = gets.strip
+       puts "user input: " + user_input
 
+      command = user_input.split(" ")
+      puts "command: " + command.to_s
       # check that  input has PLACE keyword
+      #if user_input.include?('PLACE')
+      #end
+      puts "ready? " + (!!@robot.ready?).to_s
+
+      if !@robot.ready?
+        puts 'Robot is not ready yet. Please PLACE robot'
+        next
+      end
+
+      if user_input == 'MOVE'
+        @robot.move
+      end
 
       # only initialize if PLACE given note has to be upper case
       # @robot = Robot.new()
 
-      if user_input.strip == "exit"
+      if user_input == "exit"
         break
       end
+      puts '>>> end of loop'
     end
   end
 
