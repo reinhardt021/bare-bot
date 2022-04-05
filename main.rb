@@ -1,4 +1,13 @@
-puts "Welcome to BareBot"
+puts 'Welcome to BareBot!
+
+Please provide one of the valid commands to move the robot on the 6x6 square grid:
+PLACE X,Y,O (X-coordinate, Y-coordinate, Compass Orientation)
+MOVE
+LEFT
+RIGHT
+REPORT
+
+'
 
 # robot should be prevented from exceeding limits of the grid
 # otherwise allowed to move freely (no obstructions)
