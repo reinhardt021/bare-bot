@@ -28,7 +28,8 @@ W   E
 ## Dependencies
 
 * Ruby 3.0 or later
-* bundler version 2.2 or later
+* bundler version 2.2.22 or later
+* rubocop 1.26.1 or later
 
 ## Setup
 
@@ -38,5 +39,10 @@ $ bundle install
 
 // to run the program in the command line
 $ ruby main.rb
+
+
+Development:
+// to run rubocop static analysis
+$ rubocop
 ```
 
