@@ -53,7 +53,6 @@ class Robot
   end
 
   def ready?
-    # check if has x y and orientation set
     return @x_position && @y_position && @orientation
   end
 
@@ -75,8 +74,7 @@ class Robot
   end
 
   def report
-    # if not placed then will ignore
-    # print out the x y and orientation
+    puts "Robot is at column: #{@x_position} and row: #{@y_position}, facing: #{@orientation}"
   end
 
 end
@@ -106,17 +104,12 @@ class Game
       end
 
       command = user_input.split(" ")
-      # puts "command: " + command.to_s
-      # check that  input has PLACE keyword
       if command.first == 'PLACE' && command.count == 4
         x_value = command[1].split(//).first
         y_value = command[2].split(//).first
         direction = command[3]
 
         @robot.place(x_value, y_value, direction)
-        # input = Integer(x_value) rescue false
-        # puts "x: " + input.to_s
-        # puts "x class: "+ x_value.class.name
       end
 
       if !@robot.ready?
@@ -139,7 +132,7 @@ class Game
       end
 
       if user_input == 'REPORT'
-        #@robot.report
+        @robot.report
       end
 
     end
@@ -152,13 +145,6 @@ game = Game.new
 game.play
 
 
-# The PLACE X, Y, O
-# will place the robot at position X, Y on the grid,
-# with orientation O.
-# Orientation are N, E, S, W (for North, East, South and West).
-# Position (0,0) on the grid is the south west corner.
-# First coordinate is along the East/West axis,
-# the second coordinate is along the North/South axis.
 
 # MOVE will move the robot one step forward,
 # in whichever direction it is currently facing
@@ -166,9 +152,6 @@ game.play
 
 # LEFT and RIGHT respectfully
 # turn the robot 90° angle to the left or to the right.
-
-# REPORT announces the position and orientation of the robot
-# (X, Y, O) in any format (such as standard out)
 
 
 # CONSTRAINTS:
