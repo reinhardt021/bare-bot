@@ -18,3 +18,91 @@ RSpec.describe Table, '#initialize' do
     end
   end
 end
+
+RSpec.describe Table, '#integer?' do  
+  context 'when given a letter' do 
+    it 'should return false' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = 'x'
+
+      # ACT
+      result = table.integer?(input)
+
+      # ASSERT
+      expect(result).to eq(false)
+    end
+  end
+  
+  context 'when given a number' do 
+    it 'should return integer' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = '7'
+
+      # ACT
+      result = table.integer?(input)
+
+      # ASSERT
+      expect(result).to eq(input.to_i)
+    end
+  end
+end
+
+RSpec.describe Table, '#valid_column?' do  
+  context 'when given a column inbounds' do 
+    it 'should return true' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = '3'
+
+      # ACT
+      result = table.valid_column?(input)
+
+      # ASSERT
+      expect(result).to eq(true)
+    end
+  end
+  context 'when given out of bounds column' do 
+    it 'should return false' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = '7'
+
+      # ACT
+      result = table.valid_column?(input)
+
+      # ASSERT
+      expect(result).to eq(false)
+    end
+  end
+end
+
+RSpec.describe Table, '#valid_direction?' do  
+  context 'when given N for North' do 
+    it 'should return true' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = 'N'
+
+      # ACT
+      result = table.valid_direction?(input)
+
+      # ASSERT
+      expect(result).to eq(true)
+    end
+  end
+  context 'when given NW for North West' do 
+    it 'should return false' do
+      # ARRANGE
+      table = Table.new(6, 6)
+      input = 'NW'
+
+      # ACT
+      result = table.valid_direction?(input)
+
+      # ASSERT
+      expect(result).to eq(false)
+    end
+  end
+end
