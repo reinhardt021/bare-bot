@@ -58,13 +58,25 @@ class Robot
     return @x_position && @y_position && @orientation
   end
 
-  def is_facing_table_edge()
-  end
-  # robot should be prevented from exceeding limits of the grid
-  # otherwise allowed to move freely (no obstructions)
   def move
-    # check if facing the edge of the table
-    # if fine then update coordinates in direction facing
+    x_value = @x_position.to_i
+    y_value = @y_position.to_i
+    direction = @orientation
+    if direction == 'N'
+      y_value += 1
+    end
+    if direction == 'E'
+      x_value += 1
+    end
+    if direction == 'S'
+      y_value -= 1
+    end
+    if direction == 'W'
+      x_value -= 1
+    end
+
+    # checks done in place method
+    self.place(x_value.to_s, y_value.to_s, direction)
   end
 
   def left
@@ -136,7 +148,7 @@ class Game
       #puts "Robot is ready"
 
       if user_input == 'MOVE'
-        #@robot.move
+        @robot.move
       end
 
       if user_input == 'LEFT'
@@ -167,6 +179,5 @@ game.play
 
 
 # CONSTRAINTS:
-# Commands are to be ignored until a valid PLACE command is issued
 # Any commands that would put the robot out of the defined grid is to be ignored,
 # all other commands (including another PLACE) are to be obeyed
