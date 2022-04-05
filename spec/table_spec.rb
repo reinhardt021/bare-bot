@@ -1,7 +1,7 @@
 require_relative '../lib/table'
 
-RSpec.describe Table, '#initialize' do  
-  context 'when new table is created' do 
+RSpec.describe Table, '#initialize' do
+  context 'when new table is created' do
     it 'should have rows, columns, and directions' do
       # ARRANGE
       columns = 6
@@ -19,8 +19,8 @@ RSpec.describe Table, '#initialize' do
   end
 end
 
-RSpec.describe Table, '#integer?' do  
-  context 'when given a letter' do 
+RSpec.describe Table, '#integer?' do
+  context 'when given a letter' do
     it 'should return false' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -34,7 +34,7 @@ RSpec.describe Table, '#integer?' do
     end
   end
   
-  context 'when given a number' do 
+  context 'when given a number' do
     it 'should return integer' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -49,8 +49,8 @@ RSpec.describe Table, '#integer?' do
   end
 end
 
-RSpec.describe Table, '#valid_column?' do  
-  context 'when given a column inbounds' do 
+RSpec.describe Table, '#valid_column?' do
+  context 'when given a column inbounds' do
     it 'should return true' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -63,7 +63,7 @@ RSpec.describe Table, '#valid_column?' do
       expect(result).to eq(true)
     end
   end
-  context 'when given out of bounds column' do 
+  context 'when given out of bounds column' do
     it 'should return false' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -78,8 +78,8 @@ RSpec.describe Table, '#valid_column?' do
   end
 end
 
-RSpec.describe Table, '#valid_direction?' do  
-  context 'when given N for North' do 
+RSpec.describe Table, '#valid_direction?' do
+  context 'when given N for North' do
     it 'should return true' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -92,7 +92,7 @@ RSpec.describe Table, '#valid_direction?' do
       expect(result).to eq(true)
     end
   end
-  context 'when given NW for North West' do 
+  context 'when given NW for North West' do
     it 'should return false' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -107,8 +107,8 @@ RSpec.describe Table, '#valid_direction?' do
   end
 end
 
-RSpec.describe Table, '#valid_place?' do  
-  context 'when given valid column and direction but not row' do 
+RSpec.describe Table, '#valid_place?' do
+  context 'when given valid column and direction but not row' do
     it 'should return false' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -124,7 +124,7 @@ RSpec.describe Table, '#valid_place?' do
     end
   end
 
-  context 'when given valid column and row but not direction' do 
+  context 'when given valid column and row but not direction' do
     it 'should return false' do
       # ARRANGE
       table = Table.new(6, 6)
@@ -140,7 +140,7 @@ RSpec.describe Table, '#valid_place?' do
     end
   end
 
-  context 'when given valid column and row and direction' do 
+  context 'when given valid column and row and direction' do
     it 'should return true' do
       # ARRANGE
       table = Table.new(6, 6)
